@@ -1,0 +1,9 @@
+name = "klanservicehub-frontend"
+compatibility_date = "2024-09-23"
+pages_build_output_dir = "dist"
+
+[vars]
+# Single Link: Points directly to your deployed Cloudflare Worker Backend API
+VITE_API_URL = "https://klanservicehub-backend.<your-worker-subdomain>.workers.dev"
+NEXT_PUBLIC_API_URL = "https://klanservicehub-backend.<your-worker-subdomain>.workers.dev"
+NEXT_PUBLIC_APP_BASE_URL = "https://klanservicehub-frontend.pages.dev"
