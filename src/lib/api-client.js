@@ -1,15 +1,7 @@
-const getApiBaseUrl = () => {
-  if (typeof import.meta !== 'undefined' && import.meta.env?.VITE_API_URL) {
-    return import.meta.env.VITE_API_URL.replace(/\/+$/, '');
-  }
-  if (typeof process !== 'undefined' && process.env?.NEXT_PUBLIC_API_URL) {
-    return process.env.NEXT_PUBLIC_API_URL.replace(/\/+$/, '');
-  }
-  return '';
-};
+import { getBackendApiUrl } from './config.js';
 
 export async function apiFetch(endpoint, options = {}) {
-  const baseUrl = getApiBaseUrl();
+  const baseUrl = getBackendApiUrl();
   const url = endpoint.startsWith('http')
     ? endpoint
     : `${baseUrl}${endpoint.startsWith('/') ? '' : '/'}${endpoint}`;
