@@ -1,11 +1,10 @@
-'use server';
-import { createSessionClient } from '@/lib/appwrite';
+import { authApi } from '@/lib/api-client';
+
 export const getCurrent = async () => {
-    try {
-        const { account } = await createSessionClient();
-        return await account.get();
-    }
-    catch {
-        return null;
-    }
+  try {
+    const res = await authApi.getCurrentUser();
+    return res?.data || null;
+  } catch {
+    return null;
+  }
 };
