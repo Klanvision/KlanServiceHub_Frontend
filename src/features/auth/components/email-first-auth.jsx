@@ -189,9 +189,6 @@ export const EmailFirstAuth = ({ initialMode = 'SIGN_IN' }) => {
       setCountdown(600);
       setOtp(['', '', '', '', '', '']);
       toast.success(`Verification code sent to ${email}`);
-      if (res.simulatedOtp) {
-        toast.info(`Development Backup Code: ${res.simulatedOtp}`, { duration: 10000 });
-      }
     } catch (err) {
       toast.error(err.message || 'User does not exist. Please check your email or register a new account.');
     } finally {
@@ -257,7 +254,7 @@ export const EmailFirstAuth = ({ initialMode = 'SIGN_IN' }) => {
         password,
       });
 
-      toast.success('Account setup complete! Welcome to Jira.');
+      toast.success('Account setup complete! Welcome to KlanServiceHub.');
       handleRedirectAfterAuth(res.workspaceId);
     } catch (err) {
       toast.error(err.message || 'Failed to complete registration.');
@@ -278,9 +275,6 @@ export const EmailFirstAuth = ({ initialMode = 'SIGN_IN' }) => {
       setLoading(true);
       const res = await authApi.forgotPassword({ email: email.trim() });
       toast.success(`✉️ Verification OTP and reset link sent to ${email}!`);
-      if (res?.simulatedOtp) {
-        toast.info(`Development Backup OTP: ${res.simulatedOtp}`, { duration: 10000 });
-      }
       setResetToken(res?.token || '');
       setActiveTab('RESET_PASSWORD');
       setResetStep('VERIFY_AND_RESET');
@@ -555,7 +549,7 @@ export const EmailFirstAuth = ({ initialMode = 'SIGN_IN' }) => {
             disabled={loading || !name || !email || !password}
             className="w-full rounded-xl bg-blue-600 hover:bg-blue-700 py-3 text-sm font-bold text-white shadow-md transition flex items-center justify-center gap-2 disabled:opacity-50"
           >
-            {loading ? <RefreshCw className="size-4 animate-spin" /> : <span>Create Jira Account</span>}
+            {loading ? <RefreshCw className="size-4 animate-spin" /> : <span>Create KlanServiceHub Account</span>}
             {!loading && <ArrowRight className="size-4" />}
           </button>
         </form>
@@ -722,7 +716,7 @@ export const EmailFirstAuth = ({ initialMode = 'SIGN_IN' }) => {
             disabled={loading || !password || !confirmPassword}
             className="w-full rounded-xl bg-blue-600 hover:bg-blue-700 py-3 text-sm font-bold text-white shadow-md transition flex items-center justify-center gap-2 disabled:opacity-50"
           >
-            {loading ? <RefreshCw className="size-4 animate-spin" /> : <span>Reset Password & Enter Jira</span>}
+            {loading ? <RefreshCw className="size-4 animate-spin" /> : <span>Reset Password & Enter KlanServiceHub</span>}
             {!loading && <ArrowRight className="size-4" />}
           </button>
 

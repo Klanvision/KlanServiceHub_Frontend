@@ -38,7 +38,7 @@ export const siteConfig = {
         'workspaces-management',
         'ui/ux',
         'appwrite-db',
-        'jira-clone',
+        'ticketing-tool',
         'date-fns',
         'cn',
         'clsx',

@@ -120,9 +120,11 @@ const HomePage = () => {
   return <LandingPageView />;
 };
 
+import { ErrorBoundary } from '@/components/error-boundary';
+
 export const App = () => {
   return (
-    <>
+    <ErrorBoundary>
       <ScrollToTop />
       <Suspense fallback={<PageLoader />}>
         <Routes>
@@ -257,7 +259,7 @@ export const App = () => {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
-    </>
+    </ErrorBoundary>
   );
 };
 

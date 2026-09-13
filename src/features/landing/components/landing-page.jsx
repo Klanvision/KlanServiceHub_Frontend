@@ -295,7 +295,7 @@ export const LandingPageView = () => {
         </div>
       </section>
 
-      {/* Interactive Jira Board Preview Graphic */}
+      {/* Interactive Board Preview Graphic */}
       <section className="px-6 max-w-6xl mx-auto pb-20">
         <div className="rounded-2xl border border-neutral-800 bg-neutral-950 p-4 sm:p-6 shadow-2xl text-white overflow-hidden">
           <div className="flex items-center justify-between pb-4 border-b border-neutral-800 text-xs">
