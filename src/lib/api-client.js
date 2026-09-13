@@ -1,17 +1,37 @@
 import { getBackendApiUrl } from './config.js';
 
+export const AUTH_TOKEN_KEY = 'klanservicehub_auth_token';
+
+export const getAuthToken = () => {
+  if (typeof window === 'undefined') return null;
+  return localStorage.getItem(AUTH_TOKEN_KEY);
+};
+
+export const setAuthToken = (token) => {
+  if (typeof window === 'undefined') return;
+  if (token) {
+    localStorage.setItem(AUTH_TOKEN_KEY, token);
+  } else {
+    localStorage.removeItem(AUTH_TOKEN_KEY);
+  }
+};
+
 export async function apiFetch(endpoint, options = {}) {
   const baseUrl = getBackendApiUrl();
   const url = endpoint.startsWith('http')
     ? endpoint
     : `${baseUrl}${endpoint.startsWith('/') ? '' : '/'}${endpoint}`;
 
+  const token = getAuthToken();
+  const headers = {
+    'Content-Type': 'application/json',
+    ...(token ? { Authorization: `Bearer ${token}`, 'x-session-token': token } : {}),
+    ...(options.headers || {}),
+  };
+
   const res = await fetch(url, {
     ...options,
-    headers: {
-      'Content-Type': 'application/json',
-      ...(options.headers || {}),
-    },
+    headers,
     credentials: 'include',
   });
 
@@ -31,14 +51,40 @@ export const authApi = {
   checkEmail: (email) => apiFetch('/api/auth/check-email', { method: 'POST', body: JSON.stringify({ email }) }),
   sendOtp: (email, purpose = 'LOGIN') => apiFetch('/api/auth/send-otp', { method: 'POST', body: JSON.stringify({ email, purpose }) }),
   verifyOtp: (email, otp) => apiFetch('/api/auth/verify-otp', { method: 'POST', body: JSON.stringify({ email, otp }) }),
-  loginWithOtp: (email, otp) => apiFetch('/api/auth/login-with-otp', { method: 'POST', body: JSON.stringify({ email, otp }) }),
-  register: (data) => apiFetch('/api/auth/register', { method: 'POST', body: JSON.stringify(data) }),
-  login: (data) => apiFetch('/api/auth/login', { method: 'POST', body: JSON.stringify(data) }),
+  loginWithOtp: async (email, otp) => {
+    const res = await apiFetch('/api/auth/login-with-otp', { method: 'POST', body: JSON.stringify({ email, otp }) });
+    if (res?.token || res?.sessionSecret) setAuthToken(res.token || res.sessionSecret);
+    return res;
+  },
+  register: async (data) => {
+    const res = await apiFetch('/api/auth/register', { method: 'POST', body: JSON.stringify(data) });
+    if (res?.token || res?.sessionSecret) setAuthToken(res.token || res.sessionSecret);
+    return res;
+  },
+  login: async (data) => {
+    const res = await apiFetch('/api/auth/login', { method: 'POST', body: JSON.stringify(data) });
+    if (res?.token || res?.sessionSecret) setAuthToken(res.token || res.sessionSecret);
+    return res;
+  },
   forgotPassword: (data) => apiFetch('/api/auth/forgot-password', { method: 'POST', body: JSON.stringify(data) }),
   verifyResetOtp: (data) => apiFetch('/api/auth/verify-reset-otp', { method: 'POST', body: JSON.stringify(data) }),
-  resetPassword: (data) => apiFetch('/api/auth/reset-password', { method: 'POST', body: JSON.stringify(data) }),
-  socialLogin: (data) => apiFetch('/api/auth/social-login', { method: 'POST', body: JSON.stringify(data) }),
-  logout: () => apiFetch('/api/auth/logout', { method: 'POST' }),
+  resetPassword: async (data) => {
+    const res = await apiFetch('/api/auth/reset-password', { method: 'POST', body: JSON.stringify(data) });
+    if (res?.token || res?.sessionSecret) setAuthToken(res.token || res.sessionSecret);
+    return res;
+  },
+  socialLogin: async (data) => {
+    const res = await apiFetch('/api/auth/social-login', { method: 'POST', body: JSON.stringify(data) });
+    if (res?.token || res?.sessionSecret) setAuthToken(res.token || res.sessionSecret);
+    return res;
+  },
+  logout: async () => {
+    try {
+      await apiFetch('/api/auth/logout', { method: 'POST' });
+    } finally {
+      setAuthToken(null);
+    }
+  },
   getCurrentUser: () => apiFetch('/api/auth/current'),
 };
 
@@ -226,7 +272,10 @@ export const reportsApi = {
   },
   exportReport: async (workspaceId, params = {}, format = 'comprehensive') => {
     const q = new URLSearchParams({ ...params, format }).toString();
-    const res = await fetch(`/api/reports/${workspaceId}/export?${q}`, {
+    const token = getAuthToken();
+    const headers = token ? { Authorization: `Bearer ${token}`, 'x-session-token': token } : {};
+    const res = await fetch(`${getBackendApiUrl()}/api/reports/${workspaceId}/export?${q}`, {
+      headers,
       credentials: 'include',
     });
     if (!res.ok) throw new Error('Failed to export report');
