@@ -19,9 +19,12 @@ export const getBackendApiUrl = () => {
     return import.meta.env.NEXT_PUBLIC_API_URL.replace(/\/+$/, '');
   }
 
-  // 3. Auto-detect production Cloudflare Pages hostname
-  if (typeof window !== 'undefined' && window.location?.hostname?.endsWith('pages.dev')) {
-    return 'https://klanservicehub-backend.klanservicehub.workers.dev';
+  // 3. Auto-detect production / remote hostname (workers.dev, pages.dev, or any non-localhost domain)
+  if (typeof window !== 'undefined') {
+    const host = window.location?.hostname || '';
+    if (host && host !== 'localhost' && host !== '127.0.0.1' && !host.startsWith('192.168.') && !host.startsWith('10.')) {
+      return 'https://klanservicehub-backend.klanservicehub.workers.dev';
+    }
   }
 
   // 4. Default for Local Development

@@ -141,10 +141,6 @@ export const WorkspaceIdClient = () => {
     };
   }, [workspaceAnalytics, tasks]);
 
-  if (isLoading) {
-    return <PageLoader />;
-  }
-
   const taskDocs = tasks?.documents || [];
   const projectDocs = projects?.documents || [];
   const memberDocs = members?.documents || [];
