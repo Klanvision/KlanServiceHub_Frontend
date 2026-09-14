@@ -1,25 +1,28 @@
 export default {
   async fetch(request, env) {
-    try {
-      if (env && env.ASSETS && typeof env.ASSETS.fetch === 'function') {
+    if (env && env.ASSETS && typeof env.ASSETS.fetch === 'function') {
+      try {
         const response = await env.ASSETS.fetch(request);
-        if (response.status === 404) {
-          const url = new URL(request.url);
-          if (url.pathname.endsWith('favicon.ico') || url.pathname.endsWith('icon.svg')) {
-            return new Response(null, { status: 204 });
-          }
-          // Serve SPA index.html fallback for client-side routing
-          const indexRequest = new Request(new URL('/index.html', url.origin), request);
-          return await env.ASSETS.fetch(indexRequest);
+        if (response.status !== 404) {
+          return response;
         }
-        return response;
+      } catch (e) {
+        // Continue to fallback
       }
-    } catch (err) {
-      console.error('[ASSET_SERVE_ERROR]:', err);
+
+      // SPA Fallback for client-side routing
+      try {
+        const url = new URL(request.url);
+        const indexUrl = new URL('/index.html', url.origin);
+        return await env.ASSETS.fetch(new Request(indexUrl.toString(), { method: 'GET' }));
+      } catch (err) {
+        console.error('[SPA_FALLBACK_ERROR]:', err);
+      }
     }
-    return new Response('KlanServiceHub Frontend Loading...', {
-      status: 500,
-      headers: { 'content-type': 'text/plain; charset=utf-8' },
+
+    return new Response('<!doctype html><html><head><meta http-equiv="refresh" content="0;url=/"></head><body>Redirecting...</body></html>', {
+      status: 200,
+      headers: { 'content-type': 'text/html; charset=utf-8' },
     });
   },
 };
