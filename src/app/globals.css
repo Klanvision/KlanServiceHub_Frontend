@@ -75,6 +75,9 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+  input, textarea, select {
+    color: #000000;
+  }
 }
 
 .hide-scrollbar {
