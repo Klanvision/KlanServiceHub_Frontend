@@ -107,6 +107,10 @@ const HomePage = () => {
     enabled: !!user,
   });
 
+  if (isLoadingUser) {
+    return <PageLoader />;
+  }
+
   if (user) {
     if (isLoadingWorkspaces) return <PageLoader />;
     if (!workspaces || workspaces.total === 0) return <Navigate to="/workspaces/create" replace />;

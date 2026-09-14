@@ -8,6 +8,8 @@ export const WorkspaceAvatar = ({ image, name, className }) => {
       </div>);
     }
     return (<Avatar className={cn('size-10 rounded-md', className)}>
-      <AvatarFallback className="rounded-md bg-blue-600 text-lg font-semibold uppercase text-white">{name.charAt(0)}</AvatarFallback>
+      <AvatarFallback className="rounded-md bg-blue-600 text-lg font-semibold uppercase text-white">
+        {name ? name.charAt(0).toUpperCase() : 'W'}
+      </AvatarFallback>
     </Avatar>);
 };
