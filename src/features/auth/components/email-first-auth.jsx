@@ -439,7 +439,7 @@ export const EmailFirstAuth = ({ initialMode = 'SIGN_IN' }) => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="name@company.com"
-                className="w-full rounded-xl border border-neutral-300 pl-10 pr-3.5 py-2.5 text-sm font-medium focus:border-blue-600 focus:outline-none shadow-xs"
+                className="w-full rounded-xl border border-neutral-300 pl-10 pr-3.5 py-2.5 text-sm font-semibold text-black bg-white placeholder:text-neutral-500 placeholder:font-normal focus:border-blue-600 focus:outline-none shadow-xs"
               />
             </div>
           </div>
@@ -466,7 +466,7 @@ export const EmailFirstAuth = ({ initialMode = 'SIGN_IN' }) => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full rounded-xl border border-neutral-300 pl-10 pr-3.5 py-2.5 text-sm font-medium focus:border-blue-600 focus:outline-none shadow-xs"
+                className="w-full rounded-xl border border-neutral-300 pl-10 pr-3.5 py-2.5 text-sm font-semibold text-black bg-white placeholder:text-neutral-500 placeholder:font-normal focus:border-blue-600 focus:outline-none shadow-xs"
               />
             </div>
           </div>
@@ -509,7 +509,7 @@ export const EmailFirstAuth = ({ initialMode = 'SIGN_IN' }) => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="John Doe"
-                className="w-full rounded-xl border border-neutral-300 pl-10 pr-3.5 py-2 text-sm font-medium focus:border-blue-600 focus:outline-none shadow-xs"
+                className="w-full rounded-xl border border-neutral-300 pl-10 pr-3.5 py-2 text-sm font-semibold text-black bg-white placeholder:text-neutral-500 placeholder:font-normal focus:border-blue-600 focus:outline-none shadow-xs"
               />
             </div>
           </div>
@@ -524,7 +524,7 @@ export const EmailFirstAuth = ({ initialMode = 'SIGN_IN' }) => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="name@company.com"
-                className="w-full rounded-xl border border-neutral-300 pl-10 pr-3.5 py-2 text-sm font-medium focus:border-blue-600 focus:outline-none shadow-xs"
+                className="w-full rounded-xl border border-neutral-300 pl-10 pr-3.5 py-2 text-sm font-semibold text-black bg-white placeholder:text-neutral-500 placeholder:font-normal focus:border-blue-600 focus:outline-none shadow-xs"
               />
             </div>
           </div>
@@ -539,7 +539,7 @@ export const EmailFirstAuth = ({ initialMode = 'SIGN_IN' }) => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full rounded-xl border border-neutral-300 pl-10 pr-3.5 py-2 text-sm font-medium focus:border-blue-600 focus:outline-none shadow-xs"
+                className="w-full rounded-xl border border-neutral-300 pl-10 pr-3.5 py-2 text-sm font-semibold text-black bg-white placeholder:text-neutral-500 placeholder:font-normal focus:border-blue-600 focus:outline-none shadow-xs"
               />
             </div>
           </div>
@@ -617,7 +617,7 @@ export const EmailFirstAuth = ({ initialMode = 'SIGN_IN' }) => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="name@company.com"
-                className="w-full rounded-xl border border-neutral-300 pl-10 pr-3.5 py-2.5 text-sm font-medium focus:border-blue-600 focus:outline-none shadow-xs"
+                className="w-full rounded-xl border border-neutral-300 pl-10 pr-3.5 py-2.5 text-sm font-semibold text-black bg-white placeholder:text-neutral-500 placeholder:font-normal focus:border-blue-600 focus:outline-none shadow-xs"
               />
             </div>
             <p className="mt-1 text-[11px] text-neutral-400">
@@ -670,7 +670,7 @@ export const EmailFirstAuth = ({ initialMode = 'SIGN_IN' }) => {
                       document.getElementById(`otp-${idx - 1}`)?.focus();
                     }
                   }}
-                  className="size-11 text-center font-bold text-lg rounded-xl border border-neutral-300 focus:border-blue-600 focus:outline-none shadow-xs"
+                  className="size-11 text-center font-bold text-lg text-black bg-white rounded-xl border border-neutral-300 focus:border-blue-600 focus:outline-none shadow-xs"
                 />
               ))}
             </div>
@@ -690,7 +690,7 @@ export const EmailFirstAuth = ({ initialMode = 'SIGN_IN' }) => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full rounded-xl border border-neutral-300 pl-10 pr-3.5 py-2 text-sm font-medium focus:border-blue-600 focus:outline-none shadow-xs"
+                className="w-full rounded-xl border border-neutral-300 pl-10 pr-3.5 py-2 text-sm font-semibold text-black bg-white placeholder:text-neutral-500 placeholder:font-normal focus:border-blue-600 focus:outline-none shadow-xs"
               />
             </div>
           </div>
@@ -706,7 +706,7 @@ export const EmailFirstAuth = ({ initialMode = 'SIGN_IN' }) => {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full rounded-xl border border-neutral-300 pl-10 pr-3.5 py-2 text-sm font-medium focus:border-blue-600 focus:outline-none shadow-xs"
+                className="w-full rounded-xl border border-neutral-300 pl-10 pr-3.5 py-2 text-sm font-semibold text-black bg-white placeholder:text-neutral-500 placeholder:font-normal focus:border-blue-600 focus:outline-none shadow-xs"
               />
             </div>
           </div>
@@ -756,7 +756,7 @@ export const EmailFirstAuth = ({ initialMode = 'SIGN_IN' }) => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="name@company.com"
-                    className="w-full rounded-xl border border-neutral-300 pl-10 pr-3.5 py-2.5 text-sm font-medium focus:border-blue-600 focus:outline-none shadow-xs"
+                    className="w-full rounded-xl border border-neutral-300 pl-10 pr-3.5 py-2.5 text-sm font-semibold text-black bg-white placeholder:text-neutral-500 placeholder:font-normal focus:border-blue-600 focus:outline-none shadow-xs"
                   />
                 </div>
               </div>
@@ -794,7 +794,7 @@ export const EmailFirstAuth = ({ initialMode = 'SIGN_IN' }) => {
                           document.getElementById(`otp-${idx - 1}`)?.focus();
                         }
                       }}
-                      className="size-11 text-center font-bold text-lg rounded-xl border border-neutral-300 focus:border-blue-600 focus:outline-none shadow-xs"
+                      className="size-11 text-center font-bold text-lg text-black bg-white rounded-xl border border-neutral-300 focus:border-blue-600 focus:outline-none shadow-xs"
                     />
                   ))}
                 </div>
@@ -841,7 +841,7 @@ export const EmailFirstAuth = ({ initialMode = 'SIGN_IN' }) => {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="John Doe"
-                    className="w-full rounded-xl border border-neutral-300 pl-10 pr-3.5 py-2 text-sm font-medium focus:border-blue-600 focus:outline-none shadow-xs"
+                    className="w-full rounded-xl border border-neutral-300 pl-10 pr-3.5 py-2 text-sm font-semibold text-black bg-white placeholder:text-neutral-500 placeholder:font-normal focus:border-blue-600 focus:outline-none shadow-xs"
                   />
                 </div>
               </div>
@@ -856,7 +856,7 @@ export const EmailFirstAuth = ({ initialMode = 'SIGN_IN' }) => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
-                    className="w-full rounded-xl border border-neutral-300 pl-10 pr-3.5 py-2 text-sm font-medium focus:border-blue-600 focus:outline-none shadow-xs"
+                    className="w-full rounded-xl border border-neutral-300 pl-10 pr-3.5 py-2 text-sm font-semibold text-black bg-white placeholder:text-neutral-500 placeholder:font-normal focus:border-blue-600 focus:outline-none shadow-xs"
                   />
                 </div>
               </div>
@@ -871,7 +871,7 @@ export const EmailFirstAuth = ({ initialMode = 'SIGN_IN' }) => {
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     placeholder="••••••••"
-                    className="w-full rounded-xl border border-neutral-300 pl-10 pr-3.5 py-2 text-sm font-medium focus:border-blue-600 focus:outline-none shadow-xs"
+                    className="w-full rounded-xl border border-neutral-300 pl-10 pr-3.5 py-2 text-sm font-semibold text-black bg-white placeholder:text-neutral-500 placeholder:font-normal focus:border-blue-600 focus:outline-none shadow-xs"
                   />
                 </div>
               </div>
@@ -1108,7 +1108,7 @@ export const EmailFirstAuth = ({ initialMode = 'SIGN_IN' }) => {
                       ? 'user@company.com or @outlook.com'
                       : 'username@users.noreply.github.com'
                   }
-                  className="w-full rounded-xl border border-neutral-300 px-3 py-2 text-xs focus:border-blue-600 focus:outline-none"
+                  className="w-full rounded-xl border border-neutral-300 px-3 py-2 text-xs font-semibold text-black bg-white placeholder:text-neutral-500 placeholder:font-normal focus:border-blue-600 focus:outline-none"
                 />
               </div>
 
@@ -1118,7 +1118,7 @@ export const EmailFirstAuth = ({ initialMode = 'SIGN_IN' }) => {
                   value={socialCustomName}
                   onChange={(e) => setSocialCustomName(e.target.value)}
                   placeholder="Your display name (optional)"
-                  className="w-full rounded-xl border border-neutral-300 px-3 py-2 text-xs focus:border-blue-600 focus:outline-none"
+                  className="w-full rounded-xl border border-neutral-300 px-3 py-2 text-xs font-semibold text-black bg-white placeholder:text-neutral-500 placeholder:font-normal focus:border-blue-600 focus:outline-none"
                 />
               </div>
 
