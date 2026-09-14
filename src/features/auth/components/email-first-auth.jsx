@@ -135,7 +135,18 @@ export const EmailFirstAuth = ({ initialMode = 'SIGN_IN' }) => {
       toast.success('Signed in successfully! Opening klanservicehub...');
       handleRedirectAfterAuth(res.workspaceId);
     } catch (err) {
-      toast.error(err.message || 'Invalid email or password. Please try again.');
+      const errMsg = err.message || 'Invalid email or password. Please try again.';
+      if (errMsg.toLowerCase().includes('not exist') || errMsg.toLowerCase().includes('not found')) {
+        toast.error(errMsg, {
+          action: {
+            label: 'Register Now',
+            onClick: () => setActiveTab('REGISTER'),
+          },
+          duration: 6000,
+        });
+      } else {
+        toast.error(errMsg);
+      }
     } finally {
       setLoading(false);
     }
@@ -168,7 +179,18 @@ export const EmailFirstAuth = ({ initialMode = 'SIGN_IN' }) => {
       toast.success('Account created successfully! Launching your workspace...');
       handleRedirectAfterAuth(res.workspaceId);
     } catch (err) {
-      toast.error(err.message || 'Failed to create account.');
+      const errMsg = err.message || 'Failed to create account.';
+      if (errMsg.toLowerCase().includes('already exists')) {
+        toast.error(errMsg, {
+          action: {
+            label: 'Login Instead',
+            onClick: () => setActiveTab('LOGIN'),
+          },
+          duration: 6000,
+        });
+      } else {
+        toast.error(errMsg);
+      }
     } finally {
       setLoading(false);
     }
@@ -190,7 +212,18 @@ export const EmailFirstAuth = ({ initialMode = 'SIGN_IN' }) => {
       setOtp(['', '', '', '', '', '']);
       toast.success(`Verification code sent to ${email}`);
     } catch (err) {
-      toast.error(err.message || 'User does not exist. Please check your email or register a new account.');
+      const errMsg = err.message || 'User does not exist. Please check your email or register a new account.';
+      if (errMsg.toLowerCase().includes('not exist') || errMsg.toLowerCase().includes('not found')) {
+        toast.error(errMsg, {
+          action: {
+            label: 'Register Now',
+            onClick: () => setActiveTab('REGISTER'),
+          },
+          duration: 6000,
+        });
+      } else {
+        toast.error(errMsg);
+      }
     } finally {
       setLoading(false);
     }

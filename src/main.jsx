@@ -12,7 +12,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <QueryProvider>
         <CookieConsentProvider>
-          <Toaster />
+          <Toaster position="top-right" richColors closeButton duration={4000} />
           <App />
           <CookieConsentRoot />
         </CookieConsentProvider>
