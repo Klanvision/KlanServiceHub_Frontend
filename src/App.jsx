@@ -40,10 +40,9 @@ const WorkspaceIdJoinClient = lazyLoad(() => import('@/app/(standalone)/workspac
 const ProjectIdSettingsClient = lazyLoad(() => import('@/app/(standalone)/workspaces/[workspaceId]/projects/[projectId]/settings/client'), 'ProjectIdSettingsClient');
 const WorkspacesManagementView = lazyLoad(() => import('@/features/workspaces/components/workspaces-management-view'), 'WorkspacesManagementView');
 
-// SaaS Landing Page & Onboarding
+// SaaS Landing Page
 const LandingPageView = lazyLoad(() => import('@/features/landing/components/landing-page'), 'LandingPageView');
 const EmailFirstAuth = lazyLoad(() => import('@/features/auth/components/email-first-auth'), 'EmailFirstAuth');
-const OnboardingWizard = lazyLoad(() => import('@/features/onboarding/components/onboarding-wizard'), 'OnboardingWizard');
 const InvitationAcceptancePage = lazyLoad(() => import('@/app/(public)/invite/[token]/page'), 'InvitationAcceptancePage');
 
 // Legal & Trust Center Pages
@@ -110,10 +109,10 @@ const HomePage = () => {
 
   if (user) {
     if (isLoadingWorkspaces) return <PageLoader />;
-    if (!workspaces || workspaces.total === 0) return <Navigate to="/onboarding" replace />;
+    if (!workspaces || workspaces.total === 0) return <Navigate to="/workspaces/create" replace />;
     const wsId = workspaces.documents[0]?.$id || workspaces.documents[0]?.id;
     if (wsId) return <Navigate to={`/workspaces/${wsId}`} replace />;
-    return <Navigate to="/onboarding" replace />;
+    return <Navigate to="/workspaces/create" replace />;
   }
 
   // Render Landing Page immediately for visitors with zero spinner lag
@@ -165,8 +164,7 @@ export const App = () => {
 
           {/* Protected Routes */}
           <Route element={<ProtectedRoute />}>
-            {/* Onboarding Wizard */}
-            <Route path="/onboarding" element={<OnboardingWizard />} />
+            <Route path="/onboarding" element={<Navigate to="/workspaces/create" replace />} />
 
             {/* Standalone Pages */}
             <Route

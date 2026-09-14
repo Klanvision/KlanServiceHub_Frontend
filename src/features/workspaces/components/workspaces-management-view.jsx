@@ -127,7 +127,7 @@ export const WorkspacesManagementView = () => {
             if (remaining.length > 0) {
               navigate(`/workspaces/${remaining[0].$id || remaining[0].id}`);
             } else {
-              navigate('/onboarding');
+              navigate('/workspaces/create');
             }
           }
         },
