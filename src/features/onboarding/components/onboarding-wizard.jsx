@@ -887,6 +887,13 @@ export const OnboardingWizard = () => {
                   </div>
                 ))}
               </div>
+
+              <div className="p-3.5 rounded-xl bg-blue-500/10 border border-blue-500/20 text-[11px] text-blue-300 flex items-start gap-2.5">
+                <Sparkles className="size-4 text-blue-400 shrink-0 mt-0.5" />
+                <span>
+                  <strong>Automatic Password Provisioning:</strong> Each invited team member will immediately have an account and secure temporary login password generated and dispatched in their invitation email.
+                </span>
+              </div>
             </div>
           )}
 
@@ -907,10 +914,10 @@ export const OnboardingWizard = () => {
                 type="button"
                 onClick={handleNextStep}
                 disabled={loading}
-                className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 px-6 py-2.5 text-xs font-bold text-white shadow-lg shadow-blue-500/25 transition-all duration-150 active:scale-[0.98] disabled:opacity-50"
+                className="flex items-center gap-2 rounded-xl bg-white hover:bg-slate-100 text-black px-6 py-2.5 text-xs font-black shadow-lg shadow-white/10 transition-all duration-150 active:scale-[0.98] disabled:opacity-50"
               >
-                <span>{loading ? 'Configuring...' : step === 7 ? 'Complete Setup & Launch 🚀' : 'Continue'}</span>
-                {!loading && <ArrowRight className="size-3.5" />}
+                <span className="text-black font-extrabold">{loading ? 'Configuring...' : step === 7 ? 'Complete Setup & Launch 🚀' : 'Next'}</span>
+                {!loading && <ArrowRight className="size-3.5 text-black stroke-[3]" />}
               </button>
             </div>
           )}
