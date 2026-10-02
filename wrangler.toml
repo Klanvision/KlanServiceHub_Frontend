@@ -10,6 +10,7 @@ html_handling = "auto-trailing-slash"
 
 [vars]
 # Single Link: Points directly to your deployed Cloudflare Worker Backend API
+BACKEND_URL = "https://klanservicehub-backend.klanservicehub.workers.dev"
 VITE_API_URL = "https://klanservicehub-backend.klanservicehub.workers.dev"
 NEXT_PUBLIC_API_URL = "https://klanservicehub-backend.klanservicehub.workers.dev"
-NEXT_PUBLIC_APP_BASE_URL = "https://klanservicehub-frontend.pages.dev"
+NEXT_PUBLIC_APP_BASE_URL = "https://klanservicehub-frontend.klanservicehub.workers.dev"
