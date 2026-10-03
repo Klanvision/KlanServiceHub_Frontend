@@ -770,7 +770,7 @@ export const SolutionDetailPage = () => {
 
                 <div className="pt-4 border-t border-neutral-100">
                   <p className="text-[11px] text-neutral-500">
-                    Engineered under Klanvision IT Solutions delivery specifications.
+                    Engineered under Klanvision IT Solutions delivery specifications by Ramakrishna (RK).
                   </p>
                 </div>
               </div>

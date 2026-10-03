@@ -28,10 +28,8 @@ import { InvitationAcceptancePage } from '@/app/(public)/invite/[token]/page';
 // Legal & Trust Center Pages
 import { TermsPage } from '@/features/legal/components/terms-page';
 import { PrivacyPage } from '@/features/legal/components/privacy-page';
-import { CookiesPolicyPage } from '@/features/legal/components/cookies-page';
 import { SecurityPage } from '@/features/legal/components/security-page';
 import { AcceptableUsePage } from '@/features/legal/components/acceptable-use-page';
-import { CookieConsentBanner } from '@/components/cookie-consent-banner';
 
 // Product Solutions Deep-Dive Pages
 import { SolutionDetailPage } from '@/features/solutions/components/solution-detail-page';
@@ -105,7 +103,6 @@ export const App = () => {
   return (
     <>
       <ScrollToTop />
-      <CookieConsentBanner />
       <Routes>
       {/* Public Landing & Invitation Routes */}
       <Route path="/" element={<HomePage />} />
@@ -117,9 +114,6 @@ export const App = () => {
       <Route path="/terms-of-service" element={<TermsPage />} />
       <Route path="/privacy" element={<PrivacyPage />} />
       <Route path="/privacy-policy" element={<PrivacyPage />} />
-      <Route path="/cookies" element={<CookiesPolicyPage />} />
-      <Route path="/cookie-policy" element={<CookiesPolicyPage />} />
-      <Route path="/cookies-policy" element={<CookiesPolicyPage />} />
       <Route path="/security" element={<SecurityPage />} />
       <Route path="/trust" element={<SecurityPage />} />
       <Route path="/acceptable-use" element={<AcceptableUsePage />} />

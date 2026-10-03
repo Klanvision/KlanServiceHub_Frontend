@@ -42,14 +42,21 @@ import {
   Settings2,
   Maximize2,
   Minimize2,
-  Cookie,
 } from 'lucide-react';
 
 export const LandingPageView = () => {
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
   const [openFaq, setOpenFaq] = useState(null);
+  const [isDevModalOpen, setIsDevModalOpen] = useState(false);
+  const [copiedId, setCopiedId] = useState(null);
   const [billingCycle, setBillingCycle] = useState('MONTHLY');
+
+  const handleCopyLink = (id, url) => {
+    navigator.clipboard.writeText(url);
+    setCopiedId(id);
+    setTimeout(() => setCopiedId(null), 2000);
+  };
 
   useEffect(() => {
     const startTime = Date.now();
@@ -108,8 +115,8 @@ export const LandingPageView = () => {
       id: 'dev-arch',
       category: 'architecture',
       badge: 'Platform Engineering',
-      q: 'What is the underlying architecture of klanservicehub?',
-      a: 'klanservicehub was engineered under Klanvision IT Solutions. Built on React 19, TailwindCSS, Hono, Node.js, and Cloudflare D1 / SQLite distributed edge databases for ultra-fast query execution and real-time state synchronization.',
+      q: 'Who developed klanservicehub and what is the underlying architecture?',
+      a: 'klanservicehub was engineered and developed by Ramakrishna (RK) under Klanvision IT Solutions. Built on React 19, TailwindCSS, Hono, Node.js, and Cloudflare D1 / SQLite distributed edge databases for ultra-fast query execution and real-time state synchronization.',
       advanced: 'Query execution runs through compiled prepared statements with connection reuse (<10ms p99 latency). State mutations are broadcast over optimistic WebSocket channels with automatic conflict resolution.',
       specs: ['React 19 & Next-style routing', 'Hono micro-framework', 'Cloudflare D1 / SQLite', '<10ms query execution'],
     },
@@ -207,6 +214,10 @@ export const LandingPageView = () => {
 
           <div className="space-y-1.5">
             <h2 className="text-xl font-black text-neutral-950 tracking-tight">klanservicehub</h2>
+            <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-0.5 text-xs font-bold text-emerald-800">
+              <Code2 className="size-3.5 text-emerald-600" />
+              <span>Developed by RK</span>
+            </div>
           </div>
 
           {/* Progress Bar */}
@@ -243,32 +254,27 @@ export const LandingPageView = () => {
               K
             </div>
             <span className="font-black text-lg tracking-tight text-neutral-950">klanservicehub</span>
+            <span className="hidden sm:inline-flex items-center gap-1 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-[10px] font-bold text-emerald-700">
+              <Code2 className="size-3" /> Developed by RK
+            </span>
           </Link>
 
-          <nav className="hidden lg:flex items-center gap-6 text-xs font-semibold text-neutral-600">
+          <nav className="hidden md:flex items-center gap-6 text-xs font-semibold text-neutral-600">
             <a href="#features" className="hover:text-blue-600 transition">Product</a>
             <a href="#solutions" className="hover:text-blue-600 transition">Solutions</a>
             <a href="#pricing" className="hover:text-blue-600 transition">Pricing</a>
             <a href="#faq" className="hover:text-blue-600 transition">FAQ</a>
             <button
-              type="button"
-              onClick={() => window.dispatchEvent(new CustomEvent('open-cookie-preferences'))}
+              onClick={() => window.dispatchEvent(new CustomEvent('open-dev-modal'))}
               className="text-neutral-600 hover:text-blue-600 transition font-semibold flex items-center gap-1 cursor-pointer"
             >
-              <Cookie className="size-3.5 text-blue-600" />
-              <span>Cookie Settings</span>
+              <User className="size-3.5 text-emerald-600" />
+              <span>Developer Details</span>
             </button>
           </nav>
         </div>
 
         <div className="flex items-center gap-3">
-          <Link
-            href="/cookies"
-            className="hidden sm:inline-flex items-center gap-1 rounded-xl px-3 py-2 text-xs font-semibold text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 transition"
-          >
-            <Cookie className="size-3.5" />
-            <span>Cookies</span>
-          </Link>
           <Link
             href="/sign-in"
             className="rounded-xl px-4 py-2 text-xs font-bold text-neutral-700 hover:text-neutral-950 hover:bg-neutral-100 transition"
@@ -292,6 +298,13 @@ export const LandingPageView = () => {
             <Sparkles className="size-3.5" />
             <span>New: Klanvision Enterprise Organization & Roles Architecture</span>
           </div>
+          <button
+            onClick={() => window.dispatchEvent(new CustomEvent('open-dev-modal'))}
+            className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 hover:bg-emerald-100/80 px-3.5 py-1 text-xs font-bold text-emerald-800 shadow-xs transition cursor-pointer"
+          >
+            <Code2 className="size-3.5 text-emerald-600" />
+            <span>Application Developed by RK</span>
+          </button>
         </div>
 
         <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-neutral-950 max-w-4xl mx-auto leading-tight">
@@ -596,7 +609,7 @@ export const LandingPageView = () => {
         <div className="text-center space-y-3">
           <h2 className="text-2xl sm:text-4xl font-bold text-neutral-950">Why Engineering Teams Choose This Platform</h2>
           <p className="text-sm text-neutral-600 max-w-xl mx-auto">
-            Engineered for developer delight, maximum responsiveness, and enterprise-grade reliability.
+            Engineered by RK for developer delight, maximum responsiveness, and enterprise-grade reliability.
           </p>
         </div>
 
