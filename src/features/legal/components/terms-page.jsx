@@ -181,7 +181,6 @@ export const TermsPage = () => {
               Klanvision IT Solutions Private Limited
             </p>
             <p>Corporate Portal: <a href="https://klanvision.com" target="_blank" rel="noreferrer" className="text-blue-600 dark:text-blue-400 font-semibold underline">klanvision.com</a></p>
-            <p>Lead Software Engineer & Cloud Architect: <strong>Ramakrishna K (RK)</strong> (<a href="https://ramakrishna3488.github.io/" target="_blank" rel="noreferrer" className="text-blue-600 dark:text-blue-400 underline">ramakrishna3488.github.io</a>)</p>
             <p>Legal & Governance Inquiries: <strong>legal@klanvision.com</strong> | <strong>support@klanvision.com</strong></p>
           </div>
         </section>
