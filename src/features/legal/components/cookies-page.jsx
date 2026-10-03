@@ -243,7 +243,7 @@ export const CookiesPolicyPage = () => {
             Regulatory Compliance: <strong>GDPR (EU 2016/679)</strong>, <strong>ePrivacy Directive (PECR)</strong>, and <strong>CCPA/CPRA</strong> compliant.
           </p>
           <p>
-            Cookie Policy Contact: <strong>privacy@klanservicehub.dev</strong> | Chief Engineer: <strong>Ramakrishna (RK)</strong>
+            Cookie Policy Contact: <strong>privacy@klanservicehub.dev</strong>
           </p>
         </section>
       </div>
