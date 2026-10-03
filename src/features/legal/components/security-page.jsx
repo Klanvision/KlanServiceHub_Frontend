@@ -82,7 +82,7 @@ export const SecurityPage = () => {
         {/* 4. Contact */}
         <section className="space-y-2 pt-4 border-t border-neutral-100 text-xs text-neutral-500">
           <p>
-            Security Operations & Platform Inquiries: <strong>security@klanservicehub.dev</strong>
+            Security Operations & Platform Architect: <strong>Ramakrishna (RK)</strong>
           </p>
         </section>
       </div>

@@ -2,8 +2,14 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    // Proxy API and health requests to backend
+    // Forward API and health check requests directly to backend
     if (url.pathname.startsWith('/api/') || url.pathname === '/api' || url.pathname === '/health') {
+      // 1. Direct Service Binding (Zero-latency internal worker-to-worker call)
+      if (env?.BACKEND && typeof env.BACKEND.fetch === 'function') {
+        return env.BACKEND.fetch(request);
+      }
+
+      // 2. Fallback to HTTPS fetch
       const backendBase =
         env?.BACKEND_URL ||
         env?.VITE_API_URL ||
@@ -11,21 +17,14 @@ export default {
         'https://klanservicehub-backend.klanservicehub.workers.dev';
 
       const targetUrl = new URL(url.pathname + url.search, backendBase);
-
       const requestHeaders = new Headers(request.headers);
-      requestHeaders.set('host', targetUrl.host);
-      if (!requestHeaders.has('x-forwarded-host')) {
-        requestHeaders.set('x-forwarded-host', url.host);
-      }
-      if (!requestHeaders.has('x-forwarded-proto')) {
-        requestHeaders.set('x-forwarded-proto', url.protocol.replace(':', ''));
-      }
+      requestHeaders.delete('host');
 
       const proxyRequest = new Request(targetUrl.toString(), {
         method: request.method,
         headers: requestHeaders,
         body: ['GET', 'HEAD'].includes(request.method) ? undefined : request.body,
-        redirect: 'manual',
+        redirect: 'follow',
       });
 
       try {
@@ -38,14 +37,15 @@ export default {
       }
     }
 
-    if (env && env.ASSETS && typeof env.ASSETS.fetch === 'function') {
+    // Serve static assets via Cloudflare Assets binding
+    if (env?.ASSETS && typeof env.ASSETS.fetch === 'function') {
       try {
         const response = await env.ASSETS.fetch(request);
         if (response.status !== 404) {
           return response;
         }
       } catch (e) {
-        // Continue to fallback
+        // Fallback to SPA index
       }
 
       // SPA Fallback for client-side routing
