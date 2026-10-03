@@ -45,16 +45,11 @@ export const siteConfig = {
         'lucide-react',
     ],
     authors: {
-        name: 'Ramakrishna K (RK)',
-        url: 'https://ramakrishna3488.github.io/',
-        github: 'https://github.com/RAMAKRISHNA3488',
-        linkedin: 'https://www.linkedin.com/in/ramakrishna-k-a9a9811ab/',
-        instagram: 'https://www.instagram.com/k_ramakrishna_99/',
+        name: 'Klanvision IT Solutions',
+        url: 'https://klanvision.com',
     },
 };
 export const links = {
-    sourceCode: 'https://github.com/RAMAKRISHNA3488',
-    portfolio: 'https://ramakrishna3488.github.io/',
-    linkedin: 'https://www.linkedin.com/in/ramakrishna-k-a9a9811ab/',
-    instagram: 'https://www.instagram.com/k_ramakrishna_99/',
+    sourceCode: 'https://klanvision.com',
+    portfolio: 'https://klanvision.com',
 };
