@@ -1,6 +1,7 @@
 name = "klanservicehub-frontend"
 main = "worker.js"
 compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
 
 [assets]
 directory = "./dist"
@@ -10,6 +11,9 @@ html_handling = "auto-trailing-slash"
 [[services]]
 binding = "BACKEND"
 service = "klanservicehub-backend"
+
+[observability]
+enabled = true
 
 [vars]
 BACKEND_URL = "https://klanservicehub-backend.klanservicehub.workers.dev"
